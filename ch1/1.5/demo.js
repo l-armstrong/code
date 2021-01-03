@@ -82,17 +82,14 @@ console.log(
 // Death by 1000 transaction fees
 function financialAttrition(...users) {
   // simulate 1000 transactions
-  // TODO
-  // pick a random value between 1 and 10
-  // TODO
-  // choose two users at random, but excluding Paypal
-  // TODO
-  // create a transaction from one random user to another
-  // TODO
-  // process the transaction
-  // TODO
-  // print Paypal's balance and/or the full state to the console every 100 iterations so we can see the progress
-  // TODO
+  for(let i = 0; i < 1000; i++) {
+    const value = Math.floor(Math.random() * 10) + 1;
+    const user1 = users[Math.floor(Math.random() * users.length)];
+    const user2 = users[Math.floor(Math.random() * users.length)];
+    const tx = user1.generateTx(user2, value, 'send');
+    paypal.processTx(tx);
+    if(i % 100 == 0) console.log(paypal.state[paypal.wallet.address].balance);
+  }
 }
 
 financialAttrition(
