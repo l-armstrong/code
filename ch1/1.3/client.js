@@ -5,6 +5,7 @@ class Client {
   // Initializes a public/private key pair for the user
   constructor() {
     this.wallet = EthCrypto.createIdentity();
+    this.nonce = 0;
     // initialize the nonce
     // TODO
   }
@@ -40,6 +41,7 @@ class Client {
       amount,
       from: this.wallet.address,
       to,
+      nonce: this.nonce,
       // add wallet nonce to tx
       // TODO
     };
@@ -50,6 +52,7 @@ class Client {
     };
     // increment the wallet's nonce parameter AFTER the tx object is created
     // TODO
+    this.nonce++;
     // return a Javascript object with the unsigned transaction and transaction signature
     return tx;
   }
